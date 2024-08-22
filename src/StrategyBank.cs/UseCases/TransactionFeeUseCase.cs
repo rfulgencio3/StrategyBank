@@ -6,14 +6,14 @@ using StrategyBank.Core.Strategies;
 using StrategyBank.Core.Strategies.Interfaces;
 using TransactionProcessor.Core.Entities;
 
-namespace StrategyBank.Application.Services;
+namespace StrategyBank.Application.UseCases;
 
-public class TransactionService
+public class TransactionFeeUseCase
 {
     private readonly IEnumerable<ITransactionStrategy> _strategies;
     private readonly ITransactionRepository _repository;
 
-    public TransactionService(IEnumerable<ITransactionStrategy> strategies, ITransactionRepository repository)
+    public TransactionFeeUseCase(IEnumerable<ITransactionStrategy> strategies, ITransactionRepository repository)
     {
         _strategies = strategies;
         _repository = repository;

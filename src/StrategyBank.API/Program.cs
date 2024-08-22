@@ -1,6 +1,5 @@
-using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using StrategyBank.Application.Services;
+using StrategyBank.Application.UseCases;
 using StrategyBank.Core.Repositories;
 using StrategyBank.Core.Strategies;
 using StrategyBank.Core.Strategies.Interfaces;
@@ -13,7 +12,7 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
     options.UseInMemoryDatabase("TransactionDB"));
 
 // Services
-builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<TransactionFeeUseCase>();
 
 // Repositories
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StrategyBank.Application.Models.InputModel;
-using StrategyBank.Application.Services;
-using TransactionProcessor.Core.Entities;
+using StrategyBank.Application.UseCases;
 
 namespace StrategyBank.API.Controllers;
 
@@ -9,11 +8,11 @@ namespace StrategyBank.API.Controllers;
 [Route("api/[controller]")]
 public class TransactionsController : ControllerBase
 {
-    private readonly TransactionService _transactionService;
+    private readonly TransactionFeeUseCase _useCase;
 
-    public TransactionsController(TransactionService transactionService)
+    public TransactionsController(TransactionFeeUseCase transactionService)
     {
-        _transactionService = transactionService;
+        _useCase = transactionService;
     }
 
     [HttpPost]
@@ -21,7 +20,7 @@ public class TransactionsController : ControllerBase
     {
         try
         {
-            var result = _transactionService.ProcessTransaction(inputModel);
+            var result = _useCase.ProcessTransaction(inputModel);
             return Ok(result); 
         }
         catch (InvalidOperationException ex)
